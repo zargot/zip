@@ -53,8 +53,7 @@ when defined(unix) and not defined(useLibzipSrc):
   else:
     {.pragma: mydll, dynlib: "libzip(|2).so(|.4|.2|.1|.0)".}
 else:
-  when defined(unix):
-    {.passl: "-lz".}
+  {.passl: "-lz".}
   {.compile: "zip/private/libzip_all.c".}
   {.pragma: mydll.}
 
