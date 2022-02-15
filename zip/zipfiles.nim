@@ -200,9 +200,9 @@ proc extractAll*(z: var ZipArchive, dest: string) =
   ## extracts all files from archive `z` to the destination directory.
   createDir(dest)
   for file in walkFiles(z):
-    if file.contains("/"):
-      createDir(dest / file[0..file.rfind("/")])
-    if file[^1] != '/': # current file not a folder
+    if file.contains(DirSep):
+      createDir(dest / file[0..file.rfind(DirSep)])
+    if file[^1] != DirSep: # current file not a folder
       extractFile(z, file, dest / file)
 
 proc fromBuffer*(z: var ZipArchive,data:string) =
